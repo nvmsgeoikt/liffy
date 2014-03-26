@@ -11,6 +11,14 @@ var layerGeonorgeMap = L.tileLayer.wms('http://wms.geonorge.no/skwms1/wms.topo2?
 	attribution: ''
 	});
 
+var histMap = L.tileLayer.wms('http://openwms.statkart.no/skwms1/wms.historiskekart?',
+    {
+        layers: 'amt1',
+        format: 'image/png',
+        attribution: ''
+    });
+
+
 var map = new L.Map('map', {
 		center: centerOslo,
 		zoom: 13,
@@ -53,5 +61,16 @@ function onMapClick(e) {
         $("#info").html(text);
     });
 }
+
+$('button#bgmap').click(function(){
+    $(this).toggleClass("hover");
+    if ($(this).hasClass("hover")) {
+        map.removeLayer(layerGeonorgeMap);
+        map.addLayer(histMap);
+    } else {
+        map.removeLayer(histMap);
+        map.addLayer(layerGeonorgeMap);
+    }
+});
 
 map.on('click', onMapClick);
