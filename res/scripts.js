@@ -1,7 +1,7 @@
 function placeDivs() {
     $('#map').width($(window).width() - $('#results').width() - 12*4 - 7);
-    $('#map').height($(window).height() - $('#info').height() - $('#top').height() - 12);
-    $('#info').css('top', ($('#map').height() + $('#top').height() + 12) + 'px' );
+    $('#map').height($(window).height() - $('#info').height() - $('#top').height() - 12*3);
+    $('#info').css('top', ($('#map').height() + $('#top').height() + 14) + 'px' );
     $('#info').width($('#map').width() - 14);
 }
 placeDivs();
@@ -66,6 +66,7 @@ function onMapClick(e) {
     //From NVDB REST API doc:
     // WGS84: bbox={longitudeMin, latitudeMin, longitudeMax, latitudeMax}&srid=WGS84
     var searchFilter = {
+        //lokasjon: { bbox: (e.latlng.lng)+","+(e.latlng.lat)+","+(e.latlng.lng)+","+(e.latlng.lat)},
         lokasjon: { bbox: (e.latlng.lng)+","+(e.latlng.lat)+","+(e.latlng.lng)+","+(e.latlng.lat)},
         objektTyper: [ { id: 67, antall: 15 } ]
     }
