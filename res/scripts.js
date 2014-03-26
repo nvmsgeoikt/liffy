@@ -1,7 +1,10 @@
-$('#map').width($(window).width() - $('#results').width() - 12*4 - 7);
-$('#map').height($(window).height() - $('#info').height() - $('#top').height() - 12);
-$('#info').css('top', ($('#map').height() + $('#top').height() + 12) + 'px' );
-$('#info').width($('#map').width() - 14);
+function placeDivs() {
+    $('#map').width($(window).width() - $('#results').width() - 12*4 - 7);
+    $('#map').height($(window).height() - $('#info').height() - $('#top').height() - 12);
+    $('#info').css('top', ($('#map').height() + $('#top').height() + 12) + 'px' );
+    $('#info').width($('#map').width() - 14);
+}
+placeDivs();
 
 var centerOslo = new L.LatLng(59.91545099, 10.73322757);
 var layerGeonorgeMap = L.tileLayer.wms('http://wms.geonorge.no/skwms1/wms.topo2?GetMap',
@@ -74,3 +77,9 @@ $('button#bgmap').click(function(){
 });
 
 map.on('click', onMapClick);
+
+$(document).ready(function(){
+    $(window).on('resize', function(){
+        placeDivs();
+    });
+});
