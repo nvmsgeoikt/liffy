@@ -17,6 +17,26 @@ var map = new L.Map('map', {
 		layers: layerGeonorgeMap
 		});
 
+
+var polygonLatLngs = [
+	[59.91, 10.73],
+	[59.92, 10.76],
+	[59.93, 10.77]
+];
+var aPolygon = L.polygon(polygonLatLngs).addTo(map);
+
+var polylineLatLngs = [
+	[59.925, 10.734],
+	[59.927, 10.739],
+	[59.929, 10.741],
+	[59.930, 10.739],
+	[59.930, 10.737],
+	[59.927, 10.736]
+
+];
+var aPolyline = L.polyline(polylineLatLngs).addTo(map);
+
+
 var popup = L.popup();
 
 var nvdb_endpoint = "https://www.vegvesen.no/nvdb/api";
