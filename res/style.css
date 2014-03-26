@@ -109,4 +109,8 @@ textarea {
 {
     background-color: #333333;
     border-color: #333333;
-} 
+}
+
+.leaflet-popup-content-wrapper .leaflet-popup-content {
+	color: black;
+}

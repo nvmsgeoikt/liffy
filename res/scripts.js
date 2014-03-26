@@ -9,8 +9,13 @@ L.tileLayer('http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/997/
         }
 ).addTo(map);
 
+var popup = L.popup();
+
 function onMapClick(e) {
-    alert("You clicked the map at " + e.latlng);
+	popup.
+			setLatLng(e.latlng)
+			.setContent("You clicked at " + e.latlng.toString())
+			.openOn(map);
 }
 
 map.on('click', onMapClick);
