@@ -50,7 +50,7 @@ var aPolyline = L.polyline(polylineLatLngs).addTo(map);
 
 var popup = L.popup();
 
-var nvdb_endpoint = "https://www.vegvesen.no/nvdb/api";
+var nvdb_endpoint = 'https://www.vegvesen.no/nvdb/api';
 function onMapClick(e) {
 	 popup
 	.setLatLng(e.latlng)
@@ -63,6 +63,39 @@ function onMapClick(e) {
             + "<div>Vegreferanse: " + data.visningsNavn + "</div>";
         $("#info").html(text);
     });
+    //From NVDB REST API doc:
+    // WGS84: bbox={longitudeMin, latitudeMin, longitudeMax, latitudeMax}&srid=WGS84
+    var searchFilter = {
+        lokasjon: { bbox: (e.latlng.lng)+","+(e.latlng.lat)+","+(e.latlng.lng)+","+(e.latlng.lat)},
+        objektTyper: [ { id: 67, antall: 15 } ]
+    }
+    var urla = nvdb_endpoint + '/sok';
+    $.ajax({
+        type: "GET",
+        url: urla + '?kriterie=' + JSON.stringify(searchFilter) + '&srid=WGS84',
+        dataType: "json",
+        success: function (resp) {
+            processData(resp);
+            return;
+        },
+        error: function (err) {
+            alert("error");
+        }
+    });
+}
+
+function processData(data){
+    $("#results").html('');
+    var items = [];
+    for (var i = 0; i < data.resultater.length; i++) {
+        console.debug(data.resultater[i].vegObjekter.length);
+        for (var j = 0; j < data.resultater[i].vegObjekter.length; j++) {
+            var obj = data.resultater[i].vegObjekter[j];
+            var navn = obj.egenskaper[0].verdi;
+            items.push('<div id="' + navn + '" class="result">' + navn + '</div>');
+        }
+    }
+    $("#results").html(items.join('<br/>'));
 }
 
 $('button#bgmap').click(function(){
