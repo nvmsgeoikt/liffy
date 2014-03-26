@@ -1,11 +1,28 @@
 <html>
     <head>
         <link rel="stylesheet" href="leaflet/leaflet.css"/>
-        <link rel="stylesheet" href="style.css"/>
+        <meta charset="utf-8">
+        <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <meta name="author" content="Oeyvind Jensen" />
+        <link rel="stylesheet" type="text/css" href="res/style.css" />
+        <script src="res/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script src="res/scripts.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+              //do something useful
+            });
+        </script>
     </head>
     <body>
-        <div id="header">Kart med Leaflet!</div>
-        <div id="map"></div>
+        <div id="top">
+            <h3>Kart med Leaflet!</h3>
+        </div>
+        <div id="map">map</div>
+        <div id="results">
+            <div class="result">Result 0</div>
+            <div class="result">Result 1</div>
+            <div class="result">Result 2</div>
+        </div>
 
         <script src="leaflet/leaflet.js"></script>
         <script>
