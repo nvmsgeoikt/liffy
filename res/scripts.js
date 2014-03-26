@@ -23,7 +23,7 @@ var nvdb_endpoint = "https://www.vegvesen.no/nvdb/api";
 function onMapClick(e) {
 	 popup
 	.setLatLng(e.latlng)
-	.setContent("(" + e.latlng.lat + ", " + e.latlng.lng + ")")
+	.setContent("(" + e.latlng.lng + ", " + e.latlng.lat + ")")
 	.openOn(map);
     var url = nvdb_endpoint + "/vegreferanse?x="+ e.latlng.lng+"&y="+ e.latlng.lat+"&srid=WGS84";
     $.getJSON(url, function(data) {
